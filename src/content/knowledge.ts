@@ -16,7 +16,7 @@ ${profile.availability}. Open to hybrid working.
 Email: ${profile.email}
 LinkedIn: ${profile.linkedin}
 GitHub: ${profile.github}
-Positioning: ${profile.tagline}`);
+Summary: ${profile.tagline}`);
 
   parts.push(`# Experience and education (most recent first)
 ${experience.map((e) => `## ${e.role} — ${e.org} (${e.period})\n${e.points.map((p) => `- ${p}`).join("\n")}`).join("\n\n")}

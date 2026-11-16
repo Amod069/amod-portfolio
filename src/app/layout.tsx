@@ -3,11 +3,11 @@ import "./globals.css";
 import { profile } from "@/content/profile";
 
 export const metadata: Metadata = {
-  title: `${profile.name} — ML engineer, Dublin`,
+  title: `${profile.name} — Dublin`,
   description: profile.tagline,
   metadataBase: new URL(profile.siteUrl),
   openGraph: {
-    title: `${profile.name} — ML engineer`,
+    title: profile.name,
     description: profile.tagline,
     url: profile.siteUrl,
     siteName: profile.name,

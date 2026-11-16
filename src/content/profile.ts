@@ -11,7 +11,7 @@ export const profile = {
   github: "https://github.com/Amod069",
   availability: "Available full-time from January 2027",
   tagline:
-    "ML engineer with two years of production data work in ad-tech. I turn messy real-world data into decisions, from forecasting models to LLM agents.",
+    "Data work from two sides: two years reporting ad-tech revenue at Media.net, and a year of building models at NCI — forecasting, carbon-aware scheduling, text classification, an LLM agent.",
   roles: ["ML Engineer", "Data Scientist", "AI / LLM Engineer"],
 };
 
@@ -23,6 +23,7 @@ export type Project = {
   question: string;
   metric: { value: string; label: string };
   summary: string;
+  figures?: { src: string; alt: string; caption: string }[];
   stack: string[];
   repo?: string;
   demo?: string;
@@ -39,7 +40,7 @@ export const featuredProjects: Project[] = [
       "Should a retailer train its model to forecast demand accurately, or to make cheap ordering decisions? These are not the same goal.",
     metric: { value: "6–18%", label: "cheaper ordering than the seasonal-naive baseline" },
     summary:
-      "Compared a predict-then-optimise LSTM against one trained end-to-end on the newsvendor cost itself, across four cost ratios. On average the two are statistically indistinguishable, and end-to-end costs 4× more to train. But on intermittent-demand items under high cost asymmetry, end-to-end wins significantly (+2.4% at 10:1, p < 1e-5). Decision-focused learning is a targeted tool, not a blanket upgrade.",
+      "Compared a predict-then-optimise LSTM against one trained end-to-end on the newsvendor cost itself, across four cost ratios. On average the two are statistically indistinguishable, and end-to-end costs 4× more to train. But on intermittent-demand items under high cost asymmetry, end-to-end wins significantly (+2.4% at 10:1, p < 1e-5).",
     stack: ["PyTorch", "LSTM", "bootstrap CIs", "22 unit tests", "reproducible pipeline"],
     repo: "https://github.com/Amod069/decision-focused-m5",
     accent: "decision",
@@ -54,6 +55,18 @@ export const featuredProjects: Project[] = [
     metric: { value: "r = −0.75", label: "CO₂ intensity vs wind share, over 21,241 hours" },
     summary:
       "Built the dataset from EirGrid's dashboard and 24-hour-ahead wind forecasts for four wind-farm regions (Jun 2024 – Nov 2026). Trained forecasters with and without weather features, accounted for their own training energy with CodeCarbon, explained them with SHAP, and simulated shifting batch jobs into predicted low-carbon hours.",
+    figures: [
+      {
+        src: "/figures/co2_vs_wind_share.webp",
+        alt: "Scatter plot of grid CO₂ intensity against wind share of demand, showing a strong negative relationship.",
+        caption: "CO₂ intensity falls as wind share rises (r = −0.75).",
+      },
+      {
+        src: "/figures/scheduler_savings.webp",
+        alt: "Bar chart of simulated CO₂ savings from shifting flexible jobs into predicted low-carbon hours.",
+        caption: "Simulated savings from shifting flexible jobs into predicted clean hours.",
+      },
+    ],
     stack: ["Python", "pandas", "SHAP", "CodeCarbon", "time-series forecasting"],
     repo: "https://github.com/Amod069/-irish-carbon-ca",
     accent: "signal",
@@ -161,10 +174,10 @@ export const certifications = [
   "ChatGPT Prompt Engineering for Developers (DeepLearning.AI)",
 ];
 
-// LinkedIn posts shown in "Beyond the code". Official embed URNs; loaded only on click.
+// LinkedIn posts shown in "On LinkedIn". Official embed URNs, native 504px width; hackathon win first.
 export const linkedinPosts: { urn: string; height: number; title: string }[] = [
-  { urn: "urn:li:ugcPost:7498830118627344384", height: 1026, title: "Post 1" },
-  { urn: "urn:li:ugcPost:7489768341176303616", height: 1047, title: "Post 2" },
-  { urn: "urn:li:ugcPost:7476235388441800705", height: 1194, title: "Post 3" },
-  { urn: "urn:li:ugcPost:7456753803304964096", height: 963, title: "Post 4" },
+  { urn: "urn:li:ugcPost:7476235388441800705", height: 1194, title: "Laya Healthcare hackathon win" },
+  { urn: "urn:li:ugcPost:7498830118627344384", height: 1026, title: "LinkedIn post" },
+  { urn: "urn:li:ugcPost:7489768341176303616", height: 1047, title: "LinkedIn post" },
+  { urn: "urn:li:ugcPost:7456753803304964096", height: 963, title: "LinkedIn post" },
 ];
