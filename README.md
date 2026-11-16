@@ -2,7 +2,7 @@
 
 Interactive portfolio with a "Chat with my CV" assistant. Built with Next.js 16, Motion and the Vercel AI SDK; deployed on Vercel.
 
-**Live:** https://amodaher.vercel.app
+**Live:** https://amod-portfolio-six.vercel.app/
 
 ## Run locally
 
