@@ -1,6 +1,6 @@
 # amod-portfolio
 
-Personal portfolio of Amod V. Aher (Dublin). Live at https://amodaher.vercel.app.
+Personal portfolio of Amod V. Aher (Dublin). Live at https://amod-portfolio-six.vercel.app.
 
 ## Stack
 - Next.js 16 (App Router, TypeScript, Turbopack), Tailwind v4, Motion (`motion/react`), Vercel AI SDK v7 with `@ai-sdk/anthropic`.
