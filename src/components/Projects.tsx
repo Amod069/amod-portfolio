@@ -1,49 +1,56 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { featuredProjects, earlierProjects, type Project } from "@/content/profile";
 
 function FeatureRow({ p, index }: { p: Project; index: number }) {
   const flip = index % 2 === 1;
   const accent = p.accent === "signal" ? "text-signal" : "text-decision";
-  const rule = p.accent === "signal" ? "bg-signal" : "bg-decision";
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-      className={`grid gap-8 border-t border-line py-14 md:grid-cols-12 md:gap-12 ${flip ? "" : ""}`}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+      className="grid gap-8 border-t border-line py-14 md:grid-cols-12 md:gap-12"
     >
-      <div className={`md:col-span-5 ${flip ? "md:order-2" : ""}`}>
+      <div className={`md:col-span-4 ${flip ? "md:order-2" : ""}`}>
         <p className="text-sm text-muted">
           {p.period} · {p.context}
         </p>
-        <p className={`display mt-5 text-[clamp(3rem,8vw,5.5rem)] font-bold ${accent}`}>{p.metric.value}</p>
-        <p className="measure mt-2 text-base text-text/80">{p.metric.label}</p>
-        <div className={`mt-6 h-0.5 w-16 ${rule}`} />
+        <p className={`display mt-4 text-[clamp(2.6rem,6vw,4.5rem)] font-medium ${accent}`}>{p.metric.value}</p>
+        <p className="measure mt-1 text-base text-slate/80">{p.metric.label}</p>
       </div>
 
-      <div className={`md:col-span-7 ${flip ? "md:order-1" : ""}`}>
-        <h3 className="wide text-2xl font-bold leading-tight text-text md:text-3xl">{p.title}</h3>
-        <p className="measure mt-4 text-lg italic leading-relaxed text-text/75">{p.question}</p>
-        <p className="measure mt-4 leading-relaxed text-text/85">{p.summary}</p>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {p.stack.map((s) => (
-            <li key={s} className="rounded-full border border-line px-3 py-1 text-sm text-muted">
-              {s}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-6 flex gap-5 text-sm font-medium">
+      <div className={`md:col-span-8 ${flip ? "md:order-1" : ""}`}>
+        <h3 className="text-2xl font-medium leading-tight text-slate md:text-[1.75rem]">{p.title}</h3>
+        <p className="question measure mt-4 text-slate/80">{p.question}</p>
+        <p className="measure mt-4 leading-relaxed text-slate/90">{p.summary}</p>
+
+        {p.figures && (
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {p.figures.map((f) => (
+              <figure key={f.src}>
+                <div className="overflow-hidden rounded-md border border-line bg-surface p-1.5">
+                  <Image src={f.src} alt={f.alt} width={1400} height={900} className="h-auto w-full rounded-sm" />
+                </div>
+                <figcaption className="mt-2 text-sm text-muted">{f.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+
+        <p className="mt-5 text-sm text-muted">{p.stack.join(" · ")}</p>
+        <div className="mt-4 flex gap-5 text-sm font-medium">
           {p.repo && (
-            <a href={p.repo} target="_blank" rel="noreferrer" className={`${accent} underline-offset-4 hover:underline`}>
+            <a href={p.repo} target="_blank" rel="noreferrer" className="text-signal underline-offset-4 hover:underline">
               Code on GitHub
             </a>
           )}
           {p.demo && (
-            <a href={p.demo} target="_blank" rel="noreferrer" className={`${accent} underline-offset-4 hover:underline`}>
+            <a href={p.demo} target="_blank" rel="noreferrer" className="text-signal underline-offset-4 hover:underline">
               Live demo
             </a>
           )}
@@ -55,28 +62,26 @@ function FeatureRow({ p, index }: { p: Project; index: number }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-6 py-24 md:px-10">
-      <h2 className="wide text-3xl font-bold text-text md:text-4xl">Work that had to be right</h2>
-      <p className="measure mt-4 text-lg text-muted">
-        Four projects from the last year. Each one leads with the number that mattered, then the question it answered.
-      </p>
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-20 md:px-10">
+      <h2 className="text-3xl font-medium text-slate">Projects</h2>
+      <p className="measure mt-3 text-lg text-muted">Four projects from the last year. Each one leads with the number that mattered.</p>
 
-      <div className="mt-12">
+      <div className="mt-10">
         {featuredProjects.map((p, i) => (
           <FeatureRow key={p.slug} p={p} index={i} />
         ))}
       </div>
 
-      <div className="mt-8 border-t border-line pt-10">
-        <h3 className="text-xl font-semibold text-text">Earlier</h3>
+      <div className="mt-6 border-t border-line pt-10">
+        <h3 className="text-xl font-medium text-slate">Earlier</h3>
         <ul className="mt-6 grid gap-6 md:grid-cols-3">
           {earlierProjects.map((e) => (
             <li key={e.title}>
               <p className="text-sm text-muted">{e.years}</p>
-              <a href={e.repo} target="_blank" rel="noreferrer" className="mt-1 block font-semibold text-text underline-offset-4 hover:underline">
+              <a href={e.repo} target="_blank" rel="noreferrer" className="mt-1 block font-medium text-slate underline-offset-4 hover:underline">
                 {e.title}
               </a>
-              <p className="mt-2 text-sm leading-relaxed text-text/75">{e.summary}</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate/80">{e.summary}</p>
             </li>
           ))}
         </ul>
