@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+
+:root {
+  --ink: #0f1522;
+  --ink-2: #141c2d;
+  --surface: #182033;
+  --line: #243049;
+  --text: #e8ecf4;
+  --muted: #8a94a8;
+  --signal: #3ed6c1; /* data, wind, signal */
+  --decision: #ffb547; /* cost, decisions, highlights */
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-signal: var(--signal);
+  --color-decision: var(--decision);
+  --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--decision);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.display {
+  font-variation-settings: "opsz" 96, "wdth" 100;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.wide {
+  font-variation-settings: "wdth" 112;
+}
+
+.measure {
+  max-width: 62ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
