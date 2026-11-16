@@ -1,45 +1,46 @@
 @import "tailwindcss";
-@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource-variable/instrument-sans/index.css";
+@import "@fontsource/instrument-serif/400-italic.css";
 
 :root {
-  --ink: #0f1522;
-  --ink-2: #141c2d;
-  --surface: #182033;
-  --line: #243049;
-  --text: #e8ecf4;
-  --muted: #8a94a8;
-  --signal: #3ed6c1; /* data, wind, signal */
-  --decision: #ffb547; /* cost, decisions, highlights */
+  --mist: #f2f4f0;
+  --mist-2: #e9ece6;
+  --surface: #ffffff;
+  --line: #cfd4cc;
+  --slate: #1e2622;
+  --muted: #5c6660;
+  --signal: #1f6a3e; /* grid green: data, links, primary action */
+  --decision: #d8731e; /* saffron: the numbers that mattered */
 }
 
 @theme inline {
-  --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
+  --color-mist: var(--mist);
+  --color-mist-2: var(--mist-2);
   --color-surface: var(--surface);
   --color-line: var(--line);
-  --color-text: var(--text);
+  --color-slate: var(--slate);
   --color-muted: var(--muted);
   --color-signal: var(--signal);
   --color-decision: var(--decision);
-  --font-sans: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light only;
 }
 
 body {
-  background: var(--ink);
-  color: var(--text);
+  background: var(--mist);
+  color: var(--slate);
   font-family: var(--font-sans);
-  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
   background: var(--decision);
-  color: var(--ink);
+  color: var(--mist);
 }
 
 :focus-visible {
@@ -49,13 +50,15 @@ body {
 }
 
 .display {
-  font-variation-settings: "opsz" 96, "wdth" 100;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
-.wide {
-  font-variation-settings: "wdth" 112;
+.question {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.35em;
+  line-height: 1.35;
 }
 
 .measure {
