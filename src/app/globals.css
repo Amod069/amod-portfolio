@@ -1,29 +1,27 @@
+/* Hallmark · shape: Index (one project opened as a case, the rest as an index) · genre: editorial · theme: brand · redesign: full · draw: 9ad785
+ * paper: oklch(96.5% 0.006 129) · accent: oklch(46.7% 0.102 154) · display: Instrument Sans · body: Instrument Sans · hero: Stage · nav: search-led bar · footer: colophon block · signature: an illustrated Amod who waves, watches the cursor and opens the CV chat
+ * axes: light/grotesk-sans/chromatic-green · posture: Stage · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a portfolio has little argument; the hero lets the person speak plainly and the chat answers for him */
+/* Hallmark · waive 80 · button.char in the hero, one figure of 52 shapes · the owner asked for an animated character of himself, drawn from his own photos */
+/* Hallmark · reworded "Data work from two sides…" to "Hi, I'm Amod." · the owner asked for a hero that introduces him; the line stays as profile.tagline for the chat and metadata */
+/* Hallmark · the "2.4%" figure sits in the M5 index row, shown when the row is opened */
+/* Hallmark · swap draw: shape Conversational FAQ → Index, the owner set plain noun section titles; hero Ledge → Stage, the character needs the side columns */
 @import "tailwindcss";
 @import "@fontsource-variable/instrument-sans/index.css";
 @import "@fontsource/instrument-serif/400-italic.css";
+@import "./tokens.css";
+@import "./base.css" layer(base);
 
-:root {
-  --mist: #f2f4f0;
-  --mist-2: #e9ece6;
-  --surface: #ffffff;
-  --line: #cfd4cc;
-  --slate: #1e2622;
-  --muted: #5c6660;
-  --signal: #1f6a3e; /* grid green: data, links, primary action */
-  --decision: #d8731e; /* saffron: the numbers that mattered */
-}
-
+/* Aliases so existing utilities (bg-mist, text-slate, text-signal …) read the Hallmark tokens */
 @theme inline {
-  --color-mist: var(--mist);
-  --color-mist-2: var(--mist-2);
-  --color-surface: var(--surface);
-  --color-line: var(--line);
-  --color-slate: var(--slate);
-  --color-muted: var(--muted);
-  --color-signal: var(--signal);
-  --color-decision: var(--decision);
-  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
+  --color-mist: var(--color-paper);
+  --color-mist-2: var(--color-paper-2);
+  --color-line: var(--color-rule);
+  --color-slate: var(--color-ink);
+  --color-signal: var(--color-accent);
+  --color-decision: var(--color-saffron);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-outlier);
 }
 
 html {
@@ -31,49 +29,87 @@ html {
   color-scheme: light only;
 }
 
-body {
-  background: var(--mist);
-  color: var(--slate);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
-
-::selection {
-  background: var(--decision);
-  color: var(--mist);
-}
-
-:focus-visible {
-  outline: 2px solid var(--signal);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.display {
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-
 .question {
-  font-family: var(--font-serif);
+  font-family: var(--font-outlier);
   font-style: italic;
-  font-size: 1.35em;
-  line-height: 1.35;
+  font-size: var(--text-lead);
+  line-height: 1.4;
+  max-width: 52ch;
 }
 
 .measure {
   max-width: 62ch;
 }
 
+.section-head {
+  font-size: var(--text-section);
+  max-width: 22ch;
+}
+
+/* Character */
+.c-skin { fill: var(--color-skin); }
+.c-skin-shade { fill: var(--color-skin-shade); }
+.c-hair { fill: var(--color-hair); }
+.c-hair-line { stroke: var(--color-hair); fill: none; }
+.c-hair-hi { stroke: var(--color-ink-2); stroke-opacity: 0.55; }
+.c-tee { fill: var(--color-tee); }
+.c-tee-line { stroke: var(--color-tee-shade); fill: none; }
+.c-frame { stroke: var(--color-frame); }
+.c-lens { fill: var(--color-surface); fill-opacity: 0.1; }
+.c-glint { stroke: var(--color-surface); stroke-opacity: 0.45; fill: none; }
+.c-white { fill: var(--color-surface); }
+.c-iris { fill: var(--color-hair); }
+.c-lip { stroke: var(--color-lip); fill: none; }
+.c-shade-line { stroke: var(--color-skin-shade); fill: none; }
+.c-earbud { fill: var(--color-earbud); }
+.c-disc { fill: var(--color-paper-3); }
+
+.char-eyes { transform-box: fill-box; transform-origin: center; animation: blink 5.2s infinite; }
+.char-pupils { transition: transform var(--dur-short) var(--ease-out); }
+.char-head { transform-box: view-box; transform-origin: 200px 290px; transition: transform var(--dur-long) var(--ease-out); }
+.char-hand { transform-box: view-box; transform-origin: 352px 330px; animation: wave 1.6s var(--ease-in-out) 0.6s 1 both; }
+.char:hover .char-hand,
+.char:focus-visible .char-hand { animation: wave 1.6s var(--ease-in-out) 0s 1 both; }
+
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(-16deg); }
+  30% { transform: rotate(10deg); }
+  45% { transform: rotate(-14deg); }
+  60% { transform: rotate(8deg); }
+  75% { transform: rotate(-6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.bubble {
+  transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+}
+.bubble:hover { transform: translateY(-2px); border-color: var(--color-accent); }
+.bubble:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.btn-primary:hover { background: var(--color-accent-hover); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-secondary {
+  border: 1px solid var(--color-rule);
+  color: var(--color-ink);
+  transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.btn-secondary:hover { border-color: var(--color-ink); }
+.btn-secondary:active { transform: translateY(1px); }
+
+a:active, button:active { opacity: 0.85; }
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  html { scroll-behavior: auto; }
+  .char-eyes, .char-hand { animation: none; }
+  .char-pupils, .char-head { transition: none; }
 }
