@@ -28,7 +28,7 @@ export default function Contact() {
       <p className="mt-[var(--space-3xl)] max-w-[72ch] border-t border-line pt-6 text-sm leading-relaxed text-muted">
         {profile.name}, {profile.location}. Built with Next.js and the Vercel AI SDK; the chat assistant runs on Claude and
         answers only from this page and the CV. Project figures are from the carbon-aware scheduling project, using EirGrid
-        and Open-Meteo data. The illustration is drawn from photographs of Amod.
+        and Open-Meteo data. Illustration of Amod supplied by Amod.
       </p>
     </footer>
   );

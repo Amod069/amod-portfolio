@@ -48,7 +48,7 @@ export default function Hero({ onAsk }: { onAsk: () => void }) {
       >
         <button
           onClick={onAsk}
-          className="bubble absolute left-0 top-[6%] z-[var(--z-raised)] rounded-[var(--radius-card)] border border-line bg-surface px-4 py-3 text-left text-base text-ink md:-left-6"
+          className="bubble absolute left-0 top-[2%] z-[var(--z-raised)] rounded-[var(--radius-card)] border border-line bg-surface px-4 py-3 text-left text-base text-ink md:-left-6"
         >
           Ask me about my work
           <span aria-hidden="true" className="absolute -bottom-[7px] right-8 h-3 w-3 rotate-45 border-b border-r border-line bg-surface" />
