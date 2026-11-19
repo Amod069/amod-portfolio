@@ -66,6 +66,13 @@ html {
   100% { transform: rotate(0deg) scale(1); }
 }
 
+/* LinkedIn cards: lift and a slow photo zoom on hover, a pressed state on click */
+.li-card { transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out); }
+.li-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+.li-card:active { transform: translateY(-1px); }
+.li-photo { transition: transform var(--dur-long) var(--ease-out); }
+.li-card:hover .li-photo { transform: scale(1.04); }
+
 .bubble {
   transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
 }
@@ -93,4 +100,6 @@ a:active, button:active { opacity: 0.85; }
   html { scroll-behavior: auto; }
   .char-float, .char-hello { animation: none; }
   .char-lean { transition: none; }
+  .li-card, .li-photo { transition: none; }
+  .li-card:hover, .li-card:hover .li-photo { transform: none; }
 }

@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Character from "./Character";
+import { profile } from "@/content/profile";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -23,7 +24,7 @@ export default function Hero({ onAsk }: { onAsk: () => void }) {
           transition={{ delay: 0.12, duration: 0.6, ease }}
           className="lead mt-6 text-ink-2"
         >
-          I work with data: revenue reporting at Media.net, models at NCI.
+          {profile.heroLine}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 14 }}

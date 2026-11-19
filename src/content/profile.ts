@@ -10,6 +10,8 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/amodaher",
   github: "https://github.com/Amod069",
   availability: "Available full-time from January 2027",
+  // Hero line under "Hi, I'm Amod."
+  heroLine: "From ad-tech revenue reports to forecasting models and AI agents.",
   tagline:
     "Data work from two sides: two years reporting ad-tech revenue at Media.net, and a year of building models at NCI: forecasting, carbon-aware scheduling, text classification and LLM agents.",
   roles: ["ML Engineer", "Data Scientist", "AI / LLM Engineer"],
@@ -179,11 +181,38 @@ export const certifications = [
   "ChatGPT Prompt Engineering for Developers (DeepLearning.AI)",
 ];
 
-// LinkedIn posts shown in "On LinkedIn". Official embed URNs; native size is 504px wide at the given height.
+// LinkedIn posts shown in "On LinkedIn" as cards: one photo (public/linkedin/*.webp, 4:3), a title, a one-line summary.
 // Order: the Give(a)Go hackathon win first, then newest first.
-export const linkedinPosts: { urn: string; height: number; title: string }[] = [
-  { urn: "urn:li:ugcPost:7456753803304964096", height: 963, title: "Won Give(a)Go Zero to Agent: Dublin" },
-  { urn: "urn:li:ugcPost:7498830118627344384", height: 1026, title: "Agentic AI at Accenture, The Dock" },
-  { urn: "urn:li:ugcPost:7489768341176303616", height: 1047, title: "The Art of the Possible at Meta Dublin" },
-  { urn: "urn:li:ugcPost:7476235388441800705", height: 1194, title: "SearchIRL #6 at dentsu Dublin" },
+export type LinkedInPost = { urn: string; title: string; summary: string; image: string; alt: string; tag?: string };
+
+export const linkedinPosts: LinkedInPost[] = [
+  {
+    urn: "urn:li:ugcPost:7456753803304964096",
+    title: "Won Give(a)Go Zero to Agent: Dublin",
+    summary: "In a few hours our team shipped an agent that cleans uploaded data and builds a live dashboard.",
+    image: "/linkedin/hackathon.webp",
+    alt: "The winning team at Give(a)Go Zero to Agent: Dublin, giving thumbs up, with photos of the demo",
+    tag: "Hackathon win",
+  },
+  {
+    urn: "urn:li:ugcPost:7498830118627344384",
+    title: "Agentic AI at Accenture, The Dock",
+    summary: "What makes an AI system agentic, and how data scientists actually solve client problems.",
+    image: "/linkedin/accenture.webp",
+    alt: "Amod at Accenture's The Dock in Dublin, under the Fáilte go dtí An Duga sign",
+  },
+  {
+    urn: "urn:li:ugcPost:7489768341176303616",
+    title: "The Art of the Possible at Meta Dublin",
+    summary: "A panel on creativity as a career advantage when AI gives everyone the same answers.",
+    image: "/linkedin/meta.webp",
+    alt: "Amod at Meta's Dublin office beside a large thumbs-up sign, and the panel on stage",
+  },
+  {
+    urn: "urn:li:ugcPost:7476235388441800705",
+    title: "SearchIRL #6 at dentsu Dublin",
+    summary: "International SEO and how AI search breaks one prompt into many queries.",
+    image: "/linkedin/dentsu.webp",
+    alt: "Amod beside the dentsu lectern and the SearchIRL #6 screen",
+  },
 ];
