@@ -11,7 +11,7 @@ export const profile = {
   github: "https://github.com/Amod069",
   availability: "Available full-time from January 2027",
   // Hero line under "Hi, I'm Amod."
-  heroLine: "From ad-tech revenue reports to forecasting models and AI agents.",
+  heroLine: "Two years in the ad-tech industry, now building ML models and AI agents in Dublin",
   tagline:
     "Data work from two sides: two years reporting ad-tech revenue at Media.net, and a year of building models at NCI: forecasting, carbon-aware scheduling, text classification and LLM agents.",
   roles: ["ML Engineer", "Data Scientist", "AI / LLM Engineer"],
