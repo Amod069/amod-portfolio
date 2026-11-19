@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -12,18 +12,20 @@ import ChatPanel from "@/components/ChatPanel";
 
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
-  const openChat = () => setChatOpen(true);
+  const openChat = useCallback(() => setChatOpen(true), []);
 
   return (
-    <main id="top">
+    <>
       <Nav onAsk={openChat} />
-      <Hero onAsk={openChat} />
-      <Projects />
-      <Experience />
-      <Skills />
-      <LinkedInPosts />
+      <main id="top">
+        <Hero onAsk={openChat} />
+        <Projects />
+        <Experience />
+        <Skills />
+        <LinkedInPosts />
+      </main>
       <Contact />
       <ChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />
-    </main>
+    </>
   );
 }
