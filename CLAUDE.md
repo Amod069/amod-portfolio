@@ -1,6 +1,6 @@
 # amod-portfolio
 
-Personal portfolio of Amod V. Aher (Dublin). Live at https://amod-portfolio-six.vercel.app.
+Personal portfolio of Amod V. Aher (Dublin). Redesigned with the Hallmark design skill; the stamp at the top of globals.css records the decisions and waivers. Live at https://amod-portfolio-six.vercel.app.
 
 ## Stack
 - Next.js 16 (App Router, TypeScript, Turbopack), Tailwind v4, Motion (`motion/react`), Vercel AI SDK v7 with `@ai-sdk/anthropic`.
@@ -11,15 +11,16 @@ Personal portfolio of Amod V. Aher (Dublin). Live at https://amod-portfolio-six.
 - `src/content/knowledge.ts` — builds the chatbot's knowledge pack from profile.ts. Add extra detail there, not in the route.
 - `src/app/api/chat/route.ts` — streaming chat endpoint. Model name is the `MODEL` constant. Needs `ANTHROPIC_API_KEY`.
 - `src/lib/rate-limit.ts` — in-memory per-IP limit (soft; swap for Upstash if needed).
-- `src/components/` — one file per section. `Hero.tsx` shows the real CO₂-by-hour figure.
+- `src/components/` — one file per section. `Character.tsx` is the illustrated Amod in the hero (blinks, follows the cursor, waves, opens the chat). `LinkedInPosts.tsx` scales the native 504px embeds to their column.
+- `src/app/tokens.css` / `base.css` — Hallmark tokens and base rules; every colour and font goes through a token.
 
 ## Design rules
 - Light only. Palette tokens in `globals.css`: mist #F2F4F0 (base), mist-2, surface (white), line, slate #1E2622 (text), muted; two accents with meaning — `signal` (grid green #1F6A3E: data, links, primary action) and `decision` (saffron #D8731E: the headline numbers). Don't add new colours; no dark mode.
 - Copy voice: factual. Describe what Amod has done, never what he is (no "ML engineer", no adjectives about himself, no slogans). Section titles are plain nouns.
-- Real figures from the projects (public/figures/*.webp, from the carbon repo) are the visuals. No decorative canvases or gradients.
+- Visuals: the character in the hero (waived Hallmark gate 80 at the owner's request) and the real project figures (public/figures/*.webp). No decorative canvases or gradients.
 - Motion is deliberate: one hero load sequence, viewport reveals on project rows only. Respect `prefers-reduced-motion`.
 - Projects lead with a proof metric.
-- LinkedIn embeds load with the page at native size (504px wide, per-post height); hackathon win first.
+- LinkedIn embeds load with the page at native size, scaled to fit their column; the Give(a)Go hackathon win first.
 
 ## Commands
 - `npm run dev` · `npm run build` · `npm run lint`

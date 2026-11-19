@@ -1,38 +1,66 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { linkedinPosts, profile } from "@/content/profile";
 
+const NATIVE_W = 504;
+
 /**
- * Official LinkedIn post embeds at their native size (504px wide, per-post height).
- * Two across on wide screens; a horizontal scroll row on narrow ones.
+ * One official LinkedIn embed. LinkedIn lays the post out at 504px wide and a fixed height,
+ * so the iframe stays at that size and is scaled down to the column's width: never cropped,
+ * never wider than the screen.
  */
+function Post({ urn, height, title }: { urn: string; height: number; title: string }) {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setScale(Math.min(1, entry.contentRect.width / NATIVE_W));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <figure className="mb-8 min-w-0 break-inside-avoid">
+      <div
+        ref={boxRef}
+        className="relative w-full max-w-[504px] overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface"
+        style={{ height: Math.round(height * scale) }}
+      >
+        <iframe
+          src={`https://www.linkedin.com/embed/feed/update/${urn}`}
+          title={title}
+          loading="lazy"
+          allowFullScreen
+          width={NATIVE_W}
+          height={height}
+          className="absolute left-0 top-0 origin-top-left border-0"
+          style={{ width: NATIVE_W, height, transform: `scale(${scale})` }}
+        />
+      </div>
+      <figcaption className="mt-3 text-sm text-ink-2">{title}</figcaption>
+    </figure>
+  );
+}
+
 export default function LinkedInPosts() {
   return (
     <section id="linkedin" className="bg-mist-2">
-      <div className="mx-auto max-w-6xl px-6 pt-20 md:px-10">
-        <h2 className="text-3xl font-medium text-slate">On LinkedIn</h2>
-        <p className="measure mt-3 text-lg text-muted">
-          Hackathons, places and updates, as posted at the time.{" "}
-          <a href={profile.linkedin} target="_blank" rel="noreferrer" className="text-signal underline-offset-4 hover:underline">
+      <div className="container py-[var(--section-gap-s)]">
+        <h2 className="section-head text-ink">On LinkedIn</h2>
+        <p className="lead mt-4 text-muted">
+          A hackathon win and the Dublin events since, as posted at the time.{" "}
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" className="text-signal">
             Profile on LinkedIn
           </a>
-          .
         </p>
-      </div>
-      <div className="mx-auto max-w-6xl overflow-x-auto px-6 pb-20 pt-10 md:px-10">
-        <div className="flex snap-x gap-6 md:grid md:grid-cols-2 md:justify-items-start">
+        <div className="mt-12 gap-10 md:columns-2 md:[column-gap:var(--space-xl)]">
           {linkedinPosts.map((p) => (
-            <figure key={p.urn} className="w-[504px] shrink-0 snap-start overflow-hidden rounded-lg border border-line bg-surface">
-              <iframe
-                src={`https://www.linkedin.com/embed/feed/update/${p.urn}`}
-                title={p.title}
-                loading="lazy"
-                allowFullScreen
-                width={504}
-                height={p.height}
-                className="block w-[504px] bg-white"
-                style={{ height: p.height }}
-              />
-              <figcaption className="px-4 py-3 text-sm text-muted">{p.title}</figcaption>
-            </figure>
+            <Post key={p.urn} {...p} />
           ))}
         </div>
       </div>

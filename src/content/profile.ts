@@ -11,7 +11,7 @@ export const profile = {
   github: "https://github.com/Amod069",
   availability: "Available full-time from January 2027",
   tagline:
-    "Data work from two sides: two years reporting ad-tech revenue at Media.net, and a year of building models at NCI — forecasting, carbon-aware scheduling, text classification, an LLM agent.",
+    "Data work from two sides: two years reporting ad-tech revenue at Media.net, and a year of building models at NCI: forecasting, carbon-aware scheduling, text classification and LLM agents.",
   roles: ["ML Engineer", "Data Scientist", "AI / LLM Engineer"],
 };
 
@@ -32,30 +32,21 @@ export type Project = {
 
 export const featuredProjects: Project[] = [
   {
-    slug: "decision-focused-m5",
-    title: "Decision-focused deep learning for retail inventory",
-    period: "Aug 2026",
-    context: "M5 / Walmart sales data, 5,748 item-store series",
-    question:
-      "Should a retailer train its model to forecast demand accurately, or to make cheap ordering decisions? These are not the same goal.",
-    metric: { value: "6–18%", label: "cheaper ordering than the seasonal-naive baseline" },
-    summary:
-      "Compared a predict-then-optimise LSTM against one trained end-to-end on the newsvendor cost itself, across four cost ratios. On average the two are statistically indistinguishable, and end-to-end costs 4× more to train. But on intermittent-demand items under high cost asymmetry, end-to-end wins significantly (+2.4% at 10:1, p < 1e-5).",
-    stack: ["PyTorch", "LSTM", "bootstrap CIs", "22 unit tests", "reproducible pipeline"],
-    repo: "https://github.com/Amod069/decision-focused-m5",
-    accent: "decision",
-  },
-  {
     slug: "irish-carbon",
     title: "Carbon-aware scheduling of data-centre workloads on the Irish grid",
     period: "Oct – Nov 2026",
-    context: "NCI group project · EirGrid + Open-Meteo data",
+    context: "NCI group project, with EirGrid and Open-Meteo data",
     question:
       "Data centres used about 23% of Ireland's metered electricity in 2025. Can weather forecasts predict clean hours a day ahead, and how much CO₂ do we save by shifting flexible jobs into them?",
     metric: { value: "r = −0.75", label: "CO₂ intensity vs wind share, over 21,241 hours" },
     summary:
       "Built the dataset from EirGrid's dashboard and 24-hour-ahead wind forecasts for four wind-farm regions (Jun 2024 – Nov 2026). Trained forecasters with and without weather features, accounted for their own training energy with CodeCarbon, explained them with SHAP, and simulated shifting batch jobs into predicted low-carbon hours.",
     figures: [
+      {
+        src: "/figures/co2_by_hour_season.webp",
+        alt: "Line chart of mean CO₂ intensity of the Irish grid by hour of day, one line per season. Intensity peaks around 5 to 6 am and is lowest from midday to early afternoon.",
+        caption: "Mean CO₂ intensity by hour and season. The clean hours move with the season.",
+      },
       {
         src: "/figures/co2_vs_wind_share.webp",
         alt: "Scatter plot of grid CO₂ intensity against wind share of demand, showing a strong negative relationship.",
@@ -72,24 +63,24 @@ export const featuredProjects: Project[] = [
     accent: "signal",
   },
   {
-    slug: "laya-foresight",
-    title: "Laya Foresight: predicting claim escalations before the phone rings",
-    period: "Mar 2026",
-    context: "Laya Healthcare hackathon · team project",
+    slug: "decision-focused-m5",
+    title: "Decision-focused deep learning for retail inventory",
+    period: "Aug 2026",
+    context: "M5 / Walmart sales data, 5,748 item-store series",
     question:
-      "A health-insurance claim is a black box for the customer. Anxiety turns into app refreshes, re-uploads and expensive support calls. Can we see it coming?",
-    metric: { value: "48 h", label: "ahead: who is likely to call support, scored on every active claim" },
+      "Should a retailer train its model to forecast demand accurately, or to make cheap ordering decisions? These are not the same goal.",
+    metric: { value: "6–18%", label: "cheaper ordering than the seasonal-naive baseline" },
     summary:
-      "A risk classifier scores claims from behavioural signals (logins, status reloads, uploads), claim signals and escalation history. A Claude-powered agent then ranks at-risk customers for the support team and drafts a reassuring update, approved by a human before it is sent. Shipped with a SQL logging pipeline, a real-time simulation and a React dashboard.",
-    stack: ["FastAPI", "Anthropic API", "SQL", "React + Vite"],
-    repo: "https://github.com/Laya-hackathon/laya-foresight",
+      "Compared a predict-then-optimise LSTM against one trained end-to-end on the newsvendor cost itself, across four cost ratios. On average the two are statistically indistinguishable, and end-to-end costs 4× more to train. But on intermittent-demand items under high cost asymmetry, end-to-end wins significantly (+2.4% at 10:1, p < 1e-5).",
+    stack: ["PyTorch", "LSTM", "bootstrap CIs", "22 unit tests", "reproducible pipeline"],
+    repo: "https://github.com/Amod069/decision-focused-m5",
     accent: "decision",
   },
   {
     slug: "mindscan",
     title: "MindScan: twelve classifiers, three datasets, one text box",
     period: "Apr 2026",
-    context: "NCI research project · research prototype, not a clinical tool",
+    context: "NCI research project; a research prototype, not a clinical tool",
     question:
       "How much does a transformer actually buy you over TF-IDF and a linear model on mental-health text, and does the answer change by task?",
     metric: { value: "12", label: "models compared: LogReg, SVM, XGBoost and XLM-RoBERTa on each of 3 datasets" },
@@ -98,6 +89,20 @@ export const featuredProjects: Project[] = [
     stack: ["scikit-learn", "XGBoost", "HuggingFace Transformers", "Flask"],
     repo: "https://github.com/Amod069/MindScan",
     accent: "signal",
+  },
+  {
+    slug: "laya-foresight",
+    title: "Laya Foresight: predicting claim escalations before the phone rings",
+    period: "Mar 2026",
+    context: "Laya Healthcare hackathon, team project",
+    question:
+      "A health-insurance claim is a black box for the customer. Anxiety turns into app refreshes, re-uploads and expensive support calls. Can we see it coming?",
+    metric: { value: "48 h", label: "ahead: who is likely to call support, scored on every active claim" },
+    summary:
+      "A risk classifier scores claims from behavioural signals (logins, status reloads, uploads), claim signals and escalation history. A Claude-powered agent then ranks at-risk customers for the support team and drafts a reassuring update, approved by a human before it is sent. Shipped with a SQL logging pipeline, a real-time simulation and a React dashboard.",
+    stack: ["FastAPI", "Anthropic API", "SQL", "React + Vite"],
+    repo: "https://github.com/Laya-hackathon/laya-foresight",
+    accent: "decision",
   },
 ];
 
@@ -134,7 +139,7 @@ export const experience = [
   },
   {
     role: "Business Operations Analyst",
-    org: "Media.net, Mumbai · programmatic advertising",
+    org: "Media.net, Mumbai (programmatic advertising)",
     period: "Nov 2023 – Jan 2026",
     points: [
       "Owned daily, weekly and monthly KPI, revenue and billing reporting in SQL, Tableau, Looker and Google Sheets, where accuracy decided what partners were invoiced.",
@@ -174,10 +179,11 @@ export const certifications = [
   "ChatGPT Prompt Engineering for Developers (DeepLearning.AI)",
 ];
 
-// LinkedIn posts shown in "On LinkedIn". Official embed URNs, native 504px width; hackathon win first.
+// LinkedIn posts shown in "On LinkedIn". Official embed URNs; native size is 504px wide at the given height.
+// Order: the Give(a)Go hackathon win first, then newest first.
 export const linkedinPosts: { urn: string; height: number; title: string }[] = [
-  { urn: "urn:li:ugcPost:7476235388441800705", height: 1194, title: "Laya Healthcare hackathon win" },
-  { urn: "urn:li:ugcPost:7498830118627344384", height: 1026, title: "LinkedIn post" },
-  { urn: "urn:li:ugcPost:7489768341176303616", height: 1047, title: "LinkedIn post" },
-  { urn: "urn:li:ugcPost:7456753803304964096", height: 963, title: "LinkedIn post" },
+  { urn: "urn:li:ugcPost:7456753803304964096", height: 963, title: "Won Give(a)Go Zero to Agent: Dublin" },
+  { urn: "urn:li:ugcPost:7498830118627344384", height: 1026, title: "Agentic AI at Accenture, The Dock" },
+  { urn: "urn:li:ugcPost:7489768341176303616", height: 1047, title: "The Art of the Possible at Meta Dublin" },
+  { urn: "urn:li:ugcPost:7476235388441800705", height: 1194, title: "SearchIRL #6 at dentsu Dublin" },
 ];

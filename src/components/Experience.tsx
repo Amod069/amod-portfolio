@@ -3,24 +3,25 @@ import { experience } from "@/content/profile";
 export default function Experience() {
   return (
     <section id="experience" className="bg-mist-2">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:px-10">
-        <h2 className="text-3xl font-medium text-slate">Experience</h2>
-        <p className="measure mt-3 text-lg text-muted">Most recent first.</p>
-
-        <ol className="relative mt-12 border-l border-line">
+      <div className="container grid gap-10 py-[var(--section-gap-s)] md:grid-cols-12 md:gap-8">
+        <div className="md:col-span-4">
+          <h2 className="section-head text-ink md:sticky md:top-28">Experience</h2>
+        </div>
+        <ol className="md:col-span-8">
           {experience.map((e) => (
-            <li key={e.role + e.period} className="relative pb-12 pl-8 last:pb-0 md:pl-12">
-              <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-signal" aria-hidden />
-              <p className="text-sm text-muted">{e.period}</p>
-              <h3 className="mt-1 text-xl font-medium text-slate md:text-2xl">{e.role}</h3>
-              <p className="text-base text-muted">{e.org}</p>
-              <ul className="measure mt-4 space-y-2">
-                {e.points.map((pt) => (
-                  <li key={pt} className="leading-relaxed text-slate/90">
-                    {pt}
-                  </li>
-                ))}
-              </ul>
+            <li key={e.role + e.period} className="grid gap-x-8 gap-y-2 border-t border-line py-8 first:border-t-0 first:pt-0 md:grid-cols-8">
+              <p className="text-sm text-muted md:col-span-2">{e.period}</p>
+              <div className="min-w-0 md:col-span-6">
+                <h3 className="text-ink">{e.role}</h3>
+                <p className="mt-1 text-ink-2">{e.org}</p>
+                <ul className="mt-4 space-y-3">
+                  {e.points.map((pt) => (
+                    <li key={pt} className="max-w-[62ch] leading-relaxed text-ink">
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
           ))}
         </ol>

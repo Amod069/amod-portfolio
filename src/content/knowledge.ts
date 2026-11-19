@@ -44,6 +44,8 @@ Extra detail, MindScan: NCI H9DAI research project; datasets: Nusrat et al. 2024
 
   parts.push(`# Earlier projects
 ${earlierProjects.map((e) => `- ${e.title} (${e.years}): ${e.summary} ${e.repo}`).join("\n")}
+- Give(a)Go Zero to Agent: Dublin hackathon (about May 2026): Amod's team won. In a few hours they shipped a natural-language DataOps agent: drop in a CSV or Excel file or connect a data source, and the agent understands the data, cleans it, surfaces insights and pushes everything to a live dashboard. Built on the Lua AI platform and deployed with v0 by Vercel.
+- Events in Dublin Amod has attended and written about on LinkedIn: an agentic-AI evening at Accenture's The Dock (Projector Global Community), "The Art of the Possible: Creativity as a Career Advantage" at Meta Dublin (the D2 collective), and SearchIRL #6 on international SEO and AI search at dentsu Dublin.
 - Finance complaints dashboard (Tableau): analysed a US insurer's complaints by category and state; credit-card disputes were the largest category at 19.68%.`);
 
   parts.push(`# Skills
