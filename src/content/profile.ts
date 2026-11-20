@@ -5,7 +5,7 @@ export const profile = {
   name: "Amod V. Aher",
   shortName: "Amod",
   location: "Dublin, Ireland",
-  siteUrl: "https://amod-portfolio-six.vercel.app",
+  siteUrl: "https://amodaher.dev",
   email: "amodaher1234@gmail.com",
   linkedin: "https://www.linkedin.com/in/amodaher",
   github: "https://github.com/Amod069",

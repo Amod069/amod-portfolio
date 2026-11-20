@@ -1,6 +1,6 @@
 # amod-portfolio
 
-Personal portfolio of Amod V. Aher (Dublin). Redesigned with the Hallmark design skill; the stamp at the top of globals.css records the decisions and waivers. Live at https://amod-portfolio-six.vercel.app.
+Personal portfolio of Amod V. Aher (Dublin). Redesigned with the Hallmark design skill; the stamp at the top of globals.css records the decisions and waivers. Live at https://amodaher.dev.
 
 ## Stack
 - Next.js 16 (App Router, TypeScript, Turbopack), Tailwind v4, Motion (`motion/react`), Vercel AI SDK v7 with `@ai-sdk/anthropic`.
