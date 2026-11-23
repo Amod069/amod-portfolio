@@ -26,6 +26,7 @@ export type Project = {
   metric: { value: string; label: string };
   summary: string;
   figures?: { src: string; alt: string; caption: string }[];
+  video?: { src: string; poster: string; label: string };
   stack: string[];
   repo?: string;
   demo?: string;
@@ -42,13 +43,8 @@ export const featuredProjects: Project[] = [
       "Data centres used about 23% of Ireland's metered electricity in 2025. Can weather forecasts predict clean hours a day ahead, and how much CO₂ do we save by shifting flexible jobs into them?",
     metric: { value: "r = −0.75", label: "CO₂ intensity vs wind share, over 21,241 hours" },
     summary:
-      "Built the dataset from EirGrid's dashboard and 24-hour-ahead wind forecasts for four wind-farm regions (Jun 2024 – Nov 2026). Trained forecasters with and without weather features, accounted for their own training energy with CodeCarbon, explained them with SHAP, and simulated shifting batch jobs into predicted low-carbon hours.",
+      "Built from EirGrid data and 24-hour-ahead wind forecasts, June 2024 to November 2026. Forecasting models were compared with and without weather, their training energy measured with CodeCarbon, and flexible jobs simulated against the forecast.",
     figures: [
-      {
-        src: "/figures/co2_by_hour_season.webp",
-        alt: "Line chart of mean CO₂ intensity of the Irish grid by hour of day, one line per season. Intensity peaks around 5 to 6 am and is lowest from midday to early afternoon.",
-        caption: "Mean CO₂ intensity by hour and season. The clean hours move with the season.",
-      },
       {
         src: "/figures/co2_vs_wind_share.webp",
         alt: "Scatter plot of grid CO₂ intensity against wind share of demand, showing a strong negative relationship.",
@@ -61,6 +57,7 @@ export const featuredProjects: Project[] = [
       },
     ],
     stack: ["Python", "pandas", "SHAP", "CodeCarbon", "time-series forecasting"],
+    video: { src: "/videos/carbon.mp4", poster: "/videos/carbon.jpg", label: "A week of Irish grid data, the 24-hour forecast and one job shifted to cleaner hours" },
     repo: "https://github.com/Amod069/-irish-carbon-ca",
     accent: "signal",
   },
@@ -101,8 +98,9 @@ export const featuredProjects: Project[] = [
       "A health-insurance claim is a black box for the customer. Anxiety turns into app refreshes, re-uploads and expensive support calls. Can we see it coming?",
     metric: { value: "48 h", label: "ahead: who is likely to call support, scored on every active claim" },
     summary:
-      "A risk classifier scores claims from behavioural signals (logins, status reloads, uploads), claim signals and escalation history. A Claude-powered agent then ranks at-risk customers for the support team and drafts a reassuring update, approved by a human before it is sent. Shipped with a SQL logging pipeline, a real-time simulation and a React dashboard.",
-    stack: ["FastAPI", "Anthropic API", "SQL", "React + Vite"],
+      "A risk classifier scores open claims from app behaviour, claim details and escalation history. An AI agent then works each risky case: it alerts the support team, sends the customer an update, and asks a person when it isn't sure.",
+    stack: ["FastAPI", "gpt-4o-mini (GitHub Models)", "SQL", "React + Vite"],
+    video: { src: "/videos/laya.mp4", poster: "/videos/laya.jpg", label: "Laya Foresight dashboard working one case, with placeholder data" },
     repo: "https://github.com/Laya-hackathon/laya-foresight",
     accent: "decision",
   },

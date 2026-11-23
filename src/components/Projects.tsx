@@ -3,10 +3,13 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { featuredProjects, earlierProjects, type Project } from "@/content/profile";
+import ProjectVideo from "./ProjectVideo";
 
 /** The first project, opened as a case: the question, the number, the figures. */
 function Case({ p }: { p: Project }) {
-  const [lead, ...rest] = p.figures ?? [];
+  const figs = p.figures ?? [];
+  const lead = p.video ? undefined : figs[0];
+  const rest = p.video ? figs : figs.slice(1);
   return (
     <motion.article
       initial={{ opacity: 0, y: 16 }}
@@ -42,6 +45,7 @@ function Case({ p }: { p: Project }) {
       </div>
 
       <div className="grid min-w-0 gap-6 md:col-span-7">
+        {p.video && <ProjectVideo {...p.video} />}
         {lead && (
           <figure className="min-w-0">
             <div className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface p-2">
@@ -93,6 +97,11 @@ function IndexRow({ p }: { p: Project }) {
         </summary>
         <div className="grid gap-x-8 pb-10 md:grid-cols-12">
           <div className="md:col-span-8 md:col-start-3">
+            {p.video && (
+              <div className="mb-6">
+                <ProjectVideo {...p.video} />
+              </div>
+            )}
             <p className="question text-ink-2">{p.question}</p>
             <p className="mt-4 max-w-[62ch] leading-relaxed text-ink">{p.summary}</p>
             <p className="mt-4 text-sm text-muted">{p.stack.join(", ")}</p>
