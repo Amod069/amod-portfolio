@@ -44,18 +44,6 @@ export const featuredProjects: Project[] = [
     metric: { value: "r = −0.75", label: "CO₂ intensity vs wind share, over 21,241 hours" },
     summary:
       "Built from EirGrid data and 24-hour-ahead wind forecasts, June 2024 to November 2026. Forecasting models were compared with and without weather, their training energy measured with CodeCarbon, and flexible jobs simulated against the forecast.",
-    figures: [
-      {
-        src: "/figures/co2_vs_wind_share.webp",
-        alt: "Scatter plot of grid CO₂ intensity against wind share of demand, showing a strong negative relationship.",
-        caption: "CO₂ intensity falls as wind share rises (r = −0.75).",
-      },
-      {
-        src: "/figures/scheduler_savings.webp",
-        alt: "Bar chart of simulated CO₂ savings from shifting flexible jobs into predicted low-carbon hours.",
-        caption: "Simulated savings from shifting flexible jobs into predicted clean hours.",
-      },
-    ],
     stack: ["Python", "pandas", "SHAP", "CodeCarbon", "time-series forecasting"],
     video: { src: "/videos/carbon.mp4", poster: "/videos/carbon.jpg", label: "A week of Irish grid data, the 24-hour forecast and one job shifted to cleaner hours" },
     repo: "https://github.com/Amod069/-irish-carbon-ca",
@@ -70,8 +58,9 @@ export const featuredProjects: Project[] = [
       "Should a retailer train its model to forecast demand accurately, or to make cheap ordering decisions? These are not the same goal.",
     metric: { value: "6–18%", label: "cheaper ordering than the seasonal-naive baseline" },
     summary:
-      "Compared a predict-then-optimise LSTM against one trained end-to-end on the newsvendor cost itself, across four cost ratios. On average the two are statistically indistinguishable, and end-to-end costs 4× more to train. But on intermittent-demand items under high cost asymmetry, end-to-end wins significantly (+2.4% at 10:1, p < 1e-5).",
+      "Compared a forecast-then-optimise LSTM with one trained end-to-end on the newsvendor cost, across four cost ratios and 5,748 series, with bootstrap confidence intervals and paired significance tests.",
     stack: ["PyTorch", "LSTM", "bootstrap CIs", "22 unit tests", "reproducible pipeline"],
+    video: { src: "/videos/m5.mp4", poster: "/videos/m5.jpg", label: "Ordering cost at four cost ratios, and the intermittent-demand result" },
     repo: "https://github.com/Amod069/decision-focused-m5",
     accent: "decision",
   },
@@ -84,8 +73,9 @@ export const featuredProjects: Project[] = [
       "How much does a transformer actually buy you over TF-IDF and a linear model on mental-health text, and does the answer change by task?",
     metric: { value: "12", label: "models compared: LogReg, SVM, XGBoost and XLM-RoBERTa on each of 3 datasets" },
     summary:
-      "One input text is scored for depression type (6 classes), binary depression and suicide-risk signals, each by four model families trained on separate public datasets. Served from a Flask app so the comparison can be run live.",
+      "Logistic Regression, a linear SVM, XGBoost and XLM-RoBERTa, each trained on three public datasets and served together from one Flask app. A research prototype, not a clinical tool.",
     stack: ["scikit-learn", "XGBoost", "HuggingFace Transformers", "Flask"],
+    video: { src: "/videos/mindscan.mp4", poster: "/videos/mindscan.jpg", label: "Macro F1 for the twelve models across the three datasets" },
     repo: "https://github.com/Amod069/MindScan",
     accent: "signal",
   },
